@@ -71,7 +71,12 @@ def _new_dict(dictname,key,value):
     '}\n']
 
 def _key_value_dict(key,value):
-    return "    '" + str(key) + "' : '" + str(value) + "',\n"
+    if type(value) == type(''):
+        return "    '" + str(key) + "' : '" + str(value) + "',\n"
+    elif type(value) == type(b''):
+        return "    '" + str(key) + "' : b'" + str(value) + "',\n"
+    else:
+        return "    '" + str(key) + "' : " + str(value) + ",\n"
     
 def _write_lines_to_file(lines):
     global conf_file
