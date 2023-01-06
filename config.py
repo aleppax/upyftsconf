@@ -3,9 +3,8 @@ mftsc = {
 }
 
 ### micropython far too simple config ###
-###  do not write below this header.  ###
+###  do not write below this header   ###
 ###  do not store collection items    ### 
-###  inside dictionaries.             ### 
 ###  usage (add or overwrite config): ###
 ### >>>import config                  ###
 ### >>>config.add('mftsc','I','exist')###
@@ -15,8 +14,6 @@ mftsc = {
 #########################################
 import gc
 import sys
-
-conf_file = "" # leave empty if you use this file to store data
 
 def add(dictname, key, value):
     newrow = _key_value_dict(key,value)
@@ -42,6 +39,8 @@ def add(dictname, key, value):
             if linr == '}\n':
                 dict_end = rowx
                 break
+    if (linx == -1) & (dict_end == -1):
+        new_dict = True
     result = 0
     if new_dict:
         #print('adding new dictionary')
@@ -74,14 +73,14 @@ def _new_dict(dictname,key,value):
 def _key_value_dict(key,value):
     if type(value) == type(''):
         return "    '" + str(key) + "' : '" + str(value) + "',\n"
+    elif type(value) == type(b''):
+        return "    '" + str(key) + "' : " + str(value) + ",\n"
     else:
         return "    '" + str(key) + "' : " + str(value) + ",\n"
     
 def _write_lines_to_file(lines):
-    global conf_file
-    if conf_file == "": conf_file = __file__
     try:
-        with open(conf_file, 'w') as f:
+        with open(__file__, 'w') as f:
             for l in lines:
                 f.write(l)
             return 1
@@ -90,11 +89,9 @@ def _write_lines_to_file(lines):
         return 0
 
 def _open_file_to_lines():
-    global conf_file
     conf_lines = []
-    if conf_file == "": conf_file = __file__
     try:
-        with open(conf_file, 'r') as f:
+        with open(__file__, 'r') as f:
             conf_lines = f.readlines()
     except:
         print("Could not read file: ", __file__)
