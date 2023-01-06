@@ -33,14 +33,12 @@ def add(dictname, key, value):
         if linr[:len(dictname)+4] == dictname + ' = {':
             dict_start = rowx
         if dict_start != -1:
-            if "    '" + str(key) in linr:
+            if "    '" + str(key) + "' :" in linr:
                 linx = rowx
                 break
             if linr == '}\n':
                 dict_end = rowx
                 break
-    if (linx == -1) & (dict_end == -1):
-        new_dict = True
     result = 0
     if new_dict:
         #print('adding new dictionary')
@@ -72,7 +70,7 @@ def _new_dict(dictname,key,value):
 
 def _key_value_dict(key,value):
     if type(value) == type(''):
-        return "    '" + str(key) + "' : '" + str(value) + "',\n"
+        return "    '" + str(key) + "' : '" + value + "',\n"
     else:
         return "    '" + str(key) + "' : " + str(value) + ",\n"
     
