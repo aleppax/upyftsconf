@@ -8,6 +8,7 @@ copy the file config.py at the root of your project.
 Edit it adding as many dictionaries as you wish, those are factory settings but can be modified.
 You can also add new dictionaries or settings simply by using the method `add(dictionary_name, key_name, value)`
 If the dictionary doesn't exist, it creates it and add the key:value pair.
+The function add returns the config module updated, you have to assign it to itself: `config = config.add('dict_name','key','value')`
 
 ```micropython
 # example
@@ -28,7 +29,7 @@ Do not write below this banner:
 
 ```micropython
 import config
-config.add('dict_name','key','value')
+config = config.add('dict_name','key','value')
 myvalue = config.dict_name['key']
 # or
 myvalue = config.dict_name.get('key')
