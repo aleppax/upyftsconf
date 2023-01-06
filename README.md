@@ -1,3 +1,5 @@
+![micropython Far Too Simple Config File!](/upyftsconf.jpg "uPyftsConf")
+
 # uPyftsConf
 micropython Far Too Simple Config File
 
