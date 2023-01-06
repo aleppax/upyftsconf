@@ -73,8 +73,6 @@ def _new_dict(dictname,key,value):
 def _key_value_dict(key,value):
     if type(value) == type(''):
         return "    '" + str(key) + "' : '" + str(value) + "',\n"
-    elif type(value) == type(b''):
-        return "    '" + str(key) + "' : b'" + str(value) + "',\n"
     else:
         return "    '" + str(key) + "' : " + str(value) + ",\n"
     
