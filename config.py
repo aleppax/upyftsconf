@@ -2,16 +2,16 @@ mftsc = {
     'I' : 'exist',
 }
 
-### micropython far too simple config ###
-###  do not write below this header   ###
-###  do not store collection items    ### 
-###  usage (add or overwrite config): ###
-### >>>import config                  ###
-### >>>config.add('mftsc','I','exist')###
-###  usage (access config):           ###
-### >>>config.mftsc['I']              ###
-### 'exist'                           ###
-#########################################
+### micropython far too simple config file    ###
+###  do not write below this header           ###
+###  do not store collection items            ### 
+###  usage (add or overwrite config):         ###
+### >>>import config                          ###
+### >>>config = config.add('mftsc','I','exist')##
+###  usage (access config):                   ###
+### >>>config.mftsc['I']                      ###
+### 'exist'                                   ###
+#################################################
 import gc
 import sys
 
@@ -23,7 +23,7 @@ def add(dictname, key, value):
     new_dict = False
     linx = -1
     for rowx, linr in enumerate(me):
-        if '### micropython far too simple config ###' in linr:
+        if '### micropython far too simple config file' in linr:
             new_dict = True
             break
         if linr[:4] == '    ':
