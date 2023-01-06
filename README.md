@@ -3,7 +3,7 @@
 # uPyftsConf
 micropython Far Too Simple Config File
 
-a simplicistic way of storing configuration data for projects written in micropython. (single file, 73 sloc)
+a simplicistic way of storing configuration data for projects written in micropython. (single file, 74 sloc)
 
 ## How it works
 copy the file config.py at the root of your project.
