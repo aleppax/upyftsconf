@@ -4,7 +4,7 @@ mftsc = {
 
 ### micropython far too simple config file    ###
 ###  do not write below this header           ###
-###  do not store collection items            ### 
+###  do not store collections                 ### 
 ###  usage (add or overwrite config):         ###
 ### >>>import config                          ###
 ### >>>config = config.add('mftsc','I','exist')##
