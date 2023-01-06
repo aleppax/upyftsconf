@@ -1,5 +1,5 @@
 # upyftsconf
-micropython Far Too Simple Config
+micropython Far Too Simple Config File
 
 a simplistic way of storing configuration data for projects written in micropython.
 
