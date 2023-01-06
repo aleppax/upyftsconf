@@ -14,6 +14,11 @@ The function `add` returns the config module updated, therefore you have to assi
 
 ```micropython
 # example
+config = config.add('mftsc','I','exist')
+```
+the file config.py writes these lines inside itself:
+
+```micropython
 mftsc = {
     'I' : 'exist',
 }
