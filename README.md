@@ -30,4 +30,6 @@ Do not write below this banner:
 import config
 config.add('dict_name','key','value')
 myvalue = config.dict_name['key']
+# or
+myvalue = config.dict_name.get('key')
 ```
