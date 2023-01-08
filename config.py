@@ -1,6 +1,7 @@
 mftsc = {
     'I' : 'exist',
 }
+
 #################################################
 ###  micropython far too simple config file   ###
 ###  do not write below this header           ###
@@ -23,7 +24,7 @@ def add(dictname, key, value):
     new_dict = False
     linx = -1
     for rowx, linr in enumerate(me):
-        if '#####################################' in linr:
+        if '#######################################' in linr:
             new_dict = True
             break
         if linr[:4] == '    ':
@@ -61,7 +62,7 @@ def _reload():
     mod_name = __name__
     del sys.modules[mod_name]
     gc.collect()
-    return __import__(mod_name)
+    return __import__(mod_name).config
 
 def _new_dict(dictname,key,value):
     return [dictname + ' = {\n',
