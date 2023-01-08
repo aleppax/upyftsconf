@@ -62,7 +62,10 @@ def _reload():
     mod_name = __name__
     del sys.modules[mod_name]
     gc.collect()
-    return __import__(mod_name).config
+    if mod_name == 'config':
+        return __import__(mod_name)
+    else:
+        return __import__(mod_name).config
 
 def _new_dict(dictname,key,value):
     return [dictname + ' = {\n',
