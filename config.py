@@ -1,8 +1,8 @@
 mftsc = {
     'I' : 'exist',
 }
-
-### micropython far too simple config file    ###
+#################################################
+###  micropython far too simple config file   ###
 ###  do not write below this header           ###
 ###  do not store collections                 ### 
 ###  usage (add or overwrite config):         ###
@@ -23,7 +23,7 @@ def add(dictname, key, value):
     new_dict = False
     linx = -1
     for rowx, linr in enumerate(me):
-        if '### micropython far too simple config file' in linr:
+        if '#####################################' in linr:
             new_dict = True
             break
         if linr[:4] == '    ':
