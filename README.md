@@ -26,9 +26,10 @@ upyftsconf = {
 
 Do not nest collection items inside dictionaries.
 Do not write below this banner:
-(and do not delete the line `### micropython far too simple config ###`)
+(and do not delete it)
 
 ```micropython
+#########################################
 ### micropython far too simple config ###
 ###  do not write below this header   ###
 ```
