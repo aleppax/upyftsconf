@@ -8,7 +8,7 @@ mftsc = {
 ###  do not store collections                 ### 
 ###  usage (add or overwrite config):         ###
 ### >>>import config                          ###
-### >>>config = config.add('mftsc','I','exist')##
+### >>>config = config.set('mftsc','I','exist')##
 ###  usage (access config):                   ###
 ### >>>config.mftsc['I']                      ###
 ### 'exist'                                   ###
@@ -16,7 +16,7 @@ mftsc = {
 import gc
 import sys
 
-def add(dictname, key, value):
+def set(dictname, key, value, do_reload=True):
     newrow = _key_value_dict(key,value)
     me = _open_file_to_lines()
     dict_start = -1
@@ -42,30 +42,31 @@ def add(dictname, key, value):
                 break
     result = 0
     if new_dict:
-        #print('adding new dictionary')
         newfilerows = _new_dict(dictname,key,value) + me
         result = _write_lines_to_file(newfilerows)    
     elif linx != -1:
-        #print('replacing row')
         me[linx] = newrow
         result = _write_lines_to_file(me)
     elif dict_end:
-        #print('adding new row')
         me.insert(dict_end,newrow)
         result = _write_lines_to_file(me)
-    if result:
-        return _reload()
+    if do_reload:
+        if result:
+            _reload()
+        else:
+            return
     else:
-        return sys.modules[__name__]
+        return
 
 def _reload():
-    mod_name = __name__
-    del sys.modules[mod_name]
+    del sys.modules['libs.config']
+    # if config is imported by other modules, delete it recursively
+    for mo in sys.modules:
+        if 'config' in dir(sys.modules[mo]):
+            del sys.modules[mo].__dict__['config']
+            sys.modules[mo].__dict__['config'] = __import__('libs.config').config
     gc.collect()
-    if mod_name == 'config':
-        return __import__(mod_name)
-    else:
-        return __import__(mod_name).config
+    sys.modules['libs.config'] = __import__('libs.config').config
 
 def _new_dict(dictname,key,value):
     return [dictname + ' = {\n',
@@ -73,7 +74,7 @@ def _new_dict(dictname,key,value):
     '}\n']
 
 def _key_value_dict(key,value):
-    if type(value) == type(''):
+    if isinstance(value,str):
         return "    '" + str(key) + "' : '" + value + "',\n"
     else:
         return "    '" + str(key) + "' : " + str(value) + ",\n"
@@ -81,10 +82,10 @@ def _key_value_dict(key,value):
 def _write_lines_to_file(lines):
     try:
         with open(__file__, 'w') as f:
-            for l in lines:
-                f.write(l)
+            for line in lines:
+                f.write(line)
             return 1
-    except:
+    except Exception:
         print("Could not write file: ", __file__)
         return 0
 
@@ -93,6 +94,6 @@ def _open_file_to_lines():
     try:
         with open(__file__, 'r') as f:
             conf_lines = f.readlines()
-    except:
+    except Exception:
         print("Could not read file: ", __file__)
     return conf_lines
