@@ -8,7 +8,7 @@ mftsc = {
 ###  do not store collections                 ### 
 ###  usage (add or overwrite config):         ###
 ### >>>import config                          ###
-### >>>config = config.set('mftsc','I','exist')##
+### >>>config.set('mftsc','I','exist')##
 ###  usage (access config):                   ###
 ### >>>config.mftsc['I']                      ###
 ### 'exist'                                   ###
