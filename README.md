@@ -8,7 +8,7 @@ a simplicistic way of storing configuration data for projects written in micropy
 ## How it works
 copy the file config.py inside a "libs" folder, import it.
 
-If you want edit it adding as many dictionaries as you wish, those are factory settings but can be modified afterwards.
+If you prefer you can edit the file by adding as many dictionaries as you wish before the lines with code, those are factory settings but can be modified afterwards.
 
 You can also add new dictionaries or settings simply by using the method `set(dictionary_name, key_name, value)`
 If the dictionary doesn't exist, it creates it and adds the key:value pair.
