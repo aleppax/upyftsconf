@@ -3,7 +3,10 @@
 # uPyftsConf
 micropython Far Too Simple Config File
 
-a simplicistic way of storing configuration data for projects written in micropython. (single file, 92 lines of code)
+a simplicistic way of storing configuration data for projects written in micropython. (single file, 92 lines of code).
+
+## Disclaimer
+don't take this script too seriously: even if it does what it's supposed to, it does it in a way that's not at all ordinary. But isn't it fascinating to think that code can rewrite itself?
 
 ## How it works
 copy the file config.py inside a "libs" folder, import it.
